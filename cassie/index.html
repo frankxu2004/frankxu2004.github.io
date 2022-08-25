@@ -38,16 +38,15 @@
     <title>Who is Cassie?</title>
 </head>
 <body class="bogon">
-
     <div class="center">
         <div class="center" id="chart"></div>
         <h1>
             Cassie Wang
         </h1>
-        <audio autoplay controls loop src="1.mp3"></audio>
-
         <p id="links">
         <a href="#who" data-selector="#who" data-media="who">Who?</a> 
+        <a href="#music" data-selector="#music" data-media="music">Music?</a> 
+
         </p>
         <div id="detail">
             <div id="who">
@@ -58,6 +57,14 @@
                 <p>
                 Oh, we actually met on May 22, 2022. It's been <span id="num-days"></span> days and going! </p>
             </div>
+            <div id="music">
+                <p>How talented is she? &#10024;</p>
+                <audio autoplay loop controls>
+                    <source src="1.mp3">
+                </audio>
+                
+            </div>
+
         </div>
         <canvas id='myCanvas' width='800' height='600'></canvas>
         <canvas id="scene" width="480" height="300"></canvas>
@@ -65,44 +72,45 @@
         <div class="footer">
         </div>
     </div>
+
 <script>
-const endAngle = 226;
-let canvas = document.getElementById('myCanvas');
-let context = canvas.getContext('2d');
-let counter = 60;
-let radius, tx, ty;
-context.translate(tx, ty);
-randomize();
-requestAnimationFrame(animate);
- 
-function animate() {
-  let x, y;
-  if (counter <= endAngle) {
-    let radians = Math.PI / 180 * counter;
-    y = radius * Math.sin(radians);
-    x = radius * Math.cos(radians);
-    context.fillRect(radius / 2 - x, -y, 2, 2);
-    context.fillRect(-radius / 2 + x, -y, 2, 2);
-  } else {
-    x = counter - endAngle - radius * 1.2;
-    y = counter - endAngle + radius * .71;
-    context.fillRect(x, y, 2, 2);
-    context.fillRect(-x, y, 2, 2);
-  }
-  counter = counter + 1;
-  if (counter >= endAngle + radius * 1.2) randomize();
-  requestAnimationFrame(animate);
-}
- 
-function randomize() {
-  counter = 60;
-  context.fillStyle = 'rgba(255,' + Math.floor(Math.random() * 255) + ', 255 ,1)';
-  radius = Math.random() * 100;
-  context.translate(-tx, -ty);
-  tx = Math.random() * canvas.width;
-  ty = Math.random() * canvas.height;
-  context.translate(tx, ty);
-}
+    const endAngle = 226;
+    let canvas = document.getElementById('myCanvas');
+    let context = canvas.getContext('2d');
+    let counter = 60;
+    let radius, tx, ty;
+    context.translate(tx, ty);
+    randomize();
+    requestAnimationFrame(animate);
+    
+    function animate() {
+        let x, y;
+        if (counter <= endAngle) {
+            let radians = Math.PI / 180 * counter;
+            y = radius * Math.sin(radians);
+            x = radius * Math.cos(radians);
+            context.fillRect(radius / 2 - x, -y, 2, 2);
+            context.fillRect(-radius / 2 + x, -y, 2, 2);
+        } else {
+            x = counter - endAngle - radius * 1.2;
+            y = counter - endAngle + radius * .71;
+            context.fillRect(x, y, 2, 2);
+            context.fillRect(-x, y, 2, 2);
+        }
+        counter = counter + 1;
+        if (counter >= endAngle + radius * 1.2) randomize();
+        requestAnimationFrame(animate);
+    }
+    
+    function randomize() {
+        counter = 60;
+        context.fillStyle = 'rgba(255,' + Math.floor(Math.random() * 255) + ', 255 ,1)';
+        radius = Math.random() * 100;
+        context.translate(-tx, -ty);
+        tx = Math.random() * canvas.width;
+        ty = Math.random() * canvas.height;
+        context.translate(tx, ty);
+    }
 </script>
 
     <script type="text/javascript">
